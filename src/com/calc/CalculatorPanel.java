@@ -99,22 +99,22 @@ class CalculatorPanel extends JPanel implements ActionListener {
         hexTypeGroupPanel.add(word);
         hexTypeGroupPanel.add(b_byte);
 
-        JPanel panel3 = new JPanel();
-        panel3.setBorder(etched);
-        panel3.setLayout(new GridLayout(1, 4));
+        JPanel inverseHypePanel = new JPanel();
+        inverseHypePanel.setBorder(etched);
+        inverseHypePanel.setLayout(new GridLayout(1, 4));
 
         inv = new JCheckBox("Inv");
-        panel3.add(inv);
+        inverseHypePanel.add(inv);
         hyp = new JCheckBox("Hyp");
-        panel3.add(hyp);
+        inverseHypePanel.add(hyp);
 
         Font f = new Font("Times in new roman", Font.BOLD, 14);
         c1 = new JLabel();
         c1.setFont(f);
-        panel3.add(c1);
+        inverseHypePanel.add(c1);
         c2 = new JLabel();
         c2.setFont(f);
-        panel3.add(c2);
+        inverseHypePanel.add(c2);
         c1.setHorizontalTextPosition(JLabel.RIGHT);
         c2.setHorizontalTextPosition(JLabel.RIGHT);
         Border br1 = BorderFactory.createLoweredBevelBorder();
@@ -122,20 +122,20 @@ class CalculatorPanel extends JPanel implements ActionListener {
         c1.setBorder(br1);
         c2.setBorder(br1);
 
-        JPanel panel4 = new JPanel();
-        panel4.setLayout(new GridLayout(1, 3));
+        JPanel backCePanel = new JPanel();
+        backCePanel.setLayout(new GridLayout(1, 3));
 
         JButton backspace = new JButton("Back");
         backspace.setForeground(Color.red);
-        panel4.add(backspace);
+        backCePanel.add(backspace);
         backspace.addActionListener(listener1);
         JButton ce = new JButton("CE");
         ce.setForeground(Color.red);
-        panel4.add(ce);
+        backCePanel.add(ce);
         ce.addActionListener(listener1);
         JButton c = new JButton("C.");
         c.setForeground(Color.red);
-        panel4.add(c);
+        backCePanel.add(c);
 
         c.addActionListener(listener1);
 
@@ -331,10 +331,10 @@ class CalculatorPanel extends JPanel implements ActionListener {
         hexTypeGroupPanel.setBounds(250, 20, 300, 25);
         add(hexTypeGroupPanel);
         hexTypeGroupPanel.setVisible(false);
-        panel3.setBounds(10, 45, 190, 25);
-        add(panel3);
-        panel4.setBounds(200, 45, 260, 25);
-        add(panel4);
+        inverseHypePanel.setBounds(10, 45, 234, 25);
+        add(inverseHypePanel);
+        backCePanel.setBounds(230, 45, 260, 25);
+        add(backCePanel);
         panel5.setBounds(5, 85, 60, 200);
         add(panel5);
         panel6.setBounds(65, 85, 177, 200);
