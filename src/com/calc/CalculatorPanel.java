@@ -13,7 +13,7 @@ class CalculatorPanel extends JPanel implements ActionListener {
     static JButton statDisableButton[];
     JRadioButton hex, dec, oct, bin;
     static JRadioButton degrees, radians, grads;
-    JPanel panel2, panel21;
+    JPanel degreeOptioPanel, hexTypeGroupPanel;
     static JTextField display;
     static JLabel c1, c2;
     static char mode = 'D';
@@ -42,9 +42,10 @@ class CalculatorPanel extends JPanel implements ActionListener {
         binDisableButton = new JButton[6];
         statDisableButton = new JButton[4];
 
-        JPanel panel1 = new JPanel();
-        panel1.setBorder(etched);
-        panel1.setLayout(new GridLayout(1, 4));
+        JPanel digitTypeModePanel = new JPanel();
+        digitTypeModePanel.setBorder(etched);
+        digitTypeModePanel.setLayout(new GridLayout(1, 4));
+
 
         hex = new JRadioButton("Hex");
         hex.addActionListener(this);
@@ -60,14 +61,14 @@ class CalculatorPanel extends JPanel implements ActionListener {
         group.add(dec);
         group.add(oct);
         group.add(bin);
-        panel1.add(hex);
-        panel1.add(dec);
-        panel1.add(oct);
-        panel1.add(bin);
+        digitTypeModePanel.add(hex);
+        digitTypeModePanel.add(dec);
+        digitTypeModePanel.add(oct);
+        digitTypeModePanel.add(bin);
 
-        panel2 = new JPanel();
-        panel2.setBorder(etched);
-        panel2.setLayout(new GridLayout(1, 3));
+        degreeOptioPanel = new JPanel();
+        degreeOptioPanel.setBorder(etched);
+        degreeOptioPanel.setLayout(new GridLayout(1, 3));
 
         degrees = new JRadioButton("Degrees", true);
         radians = new JRadioButton("Radians");
@@ -77,13 +78,13 @@ class CalculatorPanel extends JPanel implements ActionListener {
         group2.add(degrees);
         group2.add(radians);
         group2.add(grads);
-        panel2.add(degrees);
-        panel2.add(radians);
-        panel2.add(grads);
+        degreeOptioPanel.add(degrees);
+        degreeOptioPanel.add(radians);
+        degreeOptioPanel.add(grads);
 
-        panel21 = new JPanel();
-        panel21.setBorder(etched);
-        panel21.setLayout(new GridLayout(1, 4));
+        hexTypeGroupPanel = new JPanel();
+        hexTypeGroupPanel.setBorder(etched);
+        hexTypeGroupPanel.setLayout(new GridLayout(1, 4));
         ButtonGroup group3 = new ButtonGroup();
         JRadioButton qword = new JRadioButton("Qword", true);
         JRadioButton dword = new JRadioButton("Dword");
@@ -93,10 +94,10 @@ class CalculatorPanel extends JPanel implements ActionListener {
         group3.add(dword);
         group3.add(word);
         group3.add(b_byte);
-        panel21.add(qword);
-        panel21.add(dword);
-        panel21.add(word);
-        panel21.add(b_byte);
+        hexTypeGroupPanel.add(qword);
+        hexTypeGroupPanel.add(dword);
+        hexTypeGroupPanel.add(word);
+        hexTypeGroupPanel.add(b_byte);
 
         JPanel panel3 = new JPanel();
         panel3.setBorder(etched);
@@ -269,16 +270,16 @@ class CalculatorPanel extends JPanel implements ActionListener {
 
         final JButton bgroup[] = new JButton[30];
         panel8.setLayout(new GridLayout(5, 6));
-        String str[] = { "7", "8", "9", "/", "Md", "And", "4", "5", "6", "*",
+        String str[] = {"7", "8", "9", "/", "Md", "And", "4", "5", "6", "*",
                 "Or", "Xor", "1", "2", "3", "-", "Lsh", "Not", "0", "+/-", ".",
-                "+", "=", "Int", "A", "B", "C", "D", "E", "F" };
+                "+", "=", "Int", "A", "B", "C", "D", "E", "F"};
 
-        String keyList1[] = { "7", "8", "9", "/", "%", "&", "4", "5", "6", "*",
+        String keyList1[] = {"7", "8", "9", "/", "%", "&", "4", "5", "6", "*",
                 "|", "^", "1", "2", "3", "-", "<", "~", "0", "KeyEvent.VK_F9",
                 ".", "KeyEvent.VK_SHIFT.PLUS", "KeyEvent.VK_ENTER", ";", "A",
-                "B", "C", "D", "E", "F" };
+                "B", "C", "D", "E", "F"};
 
-        int keyList[] = { 55, 56, 57, 111, 123, 150, 52, 53, 54, 106 };
+        int keyList[] = {55, 56, 57, 111, 123, 150, 52, 53, 54, 106};
 
         for (int i = 0; i < 30; i++) {
             bgroup[i] = new JButton(str[i]);
@@ -306,16 +307,16 @@ class CalculatorPanel extends JPanel implements ActionListener {
                 binDisableButton[5] = bgroup[i];
         }
 
-        String blueButton[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9",
-                "0", "+/-", ".", "A", "B", "C", "D", "E", "F" };
+        String blueButton[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9",
+                "0", "+/-", ".", "A", "B", "C", "D", "E", "F"};
         for (int i = 0; i < 18; i++) {
             for (int j = 0; j < 30; j++)
                 if (blueButton[i].equals(bgroup[j].getText()))
                     bgroup[j].setForeground(Color.blue);
         }
 
-        String redButton[] = { "/", "Md", "And", "*", "Or", "Xor", "-", "Lsh",
-                "Not", "+", "=", "Int" };
+        String redButton[] = {"/", "Md", "And", "*", "Or", "Xor", "-", "Lsh",
+                "Not", "+", "=", "Int"};
 
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 30; j++)
@@ -323,13 +324,13 @@ class CalculatorPanel extends JPanel implements ActionListener {
                     bgroup[j].setForeground(Color.red);
         }
 
-        panel1.setBounds(10, 20, 200, 25);
-        add(panel1);
-        panel2.setBounds(210, 20, 230, 25);
-        add(panel2);
-        panel21.setBounds(210, 20, 270, 25);
-        add(panel21);
-        panel21.setVisible(false);
+        digitTypeModePanel.setBounds(10, 20, 240, 25);
+        add(digitTypeModePanel);
+        degreeOptioPanel.setBounds(250, 20, 253, 25);
+        add(degreeOptioPanel);
+        hexTypeGroupPanel.setBounds(250, 20, 300, 25);
+        add(hexTypeGroupPanel);
+        hexTypeGroupPanel.setVisible(false);
         panel3.setBounds(10, 45, 190, 25);
         add(panel3);
         panel4.setBounds(200, 45, 260, 25);
@@ -388,8 +389,8 @@ class CalculatorPanel extends JPanel implements ActionListener {
                     display.setText(""
                             + Integer.toHexString((int) getNumber())
                             .toUpperCase());
-                this.panel2.setVisible(false);
-                this.panel21.setVisible(true);
+                this.degreeOptioPanel.setVisible(false);
+                this.hexTypeGroupPanel.setVisible(true);
                 hexDisable(false);
                 decDisable(true);
                 octDisable(true);
@@ -408,8 +409,8 @@ class CalculatorPanel extends JPanel implements ActionListener {
                 if (d == 0)
                     display.setText("" + (int) getNumber());
 
-                this.panel2.setVisible(true);
-                this.panel21.setVisible(false);
+                this.degreeOptioPanel.setVisible(true);
+                this.hexTypeGroupPanel.setVisible(false);
                 decDisable(false);
                 hexDisable(true);
                 octDisable(true);
@@ -428,8 +429,8 @@ class CalculatorPanel extends JPanel implements ActionListener {
                 if (o == 0)
                     display.setText(""
                             + Integer.toOctalString((int) getNumber()));
-                this.panel2.setVisible(false);
-                this.panel21.setVisible(true);
+                this.degreeOptioPanel.setVisible(false);
+                this.hexTypeGroupPanel.setVisible(true);
                 hexDisable(false);
                 decDisable(false);
                 octDisable(false);
@@ -450,8 +451,8 @@ class CalculatorPanel extends JPanel implements ActionListener {
                 if (b == 0)
                     display.setText(""
                             + Integer.toBinaryString((int) getNumber()));
-                this.panel2.setVisible(false);
-                this.panel21.setVisible(true);
+                this.degreeOptioPanel.setVisible(false);
+                this.hexTypeGroupPanel.setVisible(true);
                 hexDisable(false);
                 decDisable(false);
                 octDisable(false);
