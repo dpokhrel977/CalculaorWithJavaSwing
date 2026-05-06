@@ -489,19 +489,21 @@ class CalculatorPanel extends JPanel implements ActionListener {
     }
 
     public void binDisable(Boolean flag) {
-        for (int i = 0; i < 6; i++)
-            this.binDisableButton[i].setEnabled(flag);
+        Arrays.stream(this.binDisableButton).
+                forEach(button -> button.setEnabled(flag));
+
     }
 
     public static void enableStat() {
-        for (int i = 0; i < 4; i++)
-            statDisableButton[i].setEnabled(true);
+        Arrays.stream(statDisableButton).
+                forEach(button -> button.setEnabled(true));
 
     }
 
     public static void disableStat() {
-        for (int i = 0; i < 4; i++)
-            statDisableButton[i].setEnabled(false);
+        Arrays.stream(statDisableButton).
+                forEach(button -> button.setEnabled(false));
+
 
     }
 
@@ -656,14 +658,15 @@ class CalculatorPanel extends JPanel implements ActionListener {
     public static double getNumber() {
         double number = 0;
         try {
-            if (mode == 'H')
+            if (mode == 'H') {
                 number = Integer.parseInt(display.getText(), 16);
-            else if (mode == 'O')
+            } else if (mode == 'O') {
                 number = Integer.parseInt(display.getText(), 8);
-            else if (mode == 'B')
+            } else if (mode == 'B') {
                 number = Integer.parseInt(display.getText(), 2);
-            else
+            } else {
                 number = Double.parseDouble(display.getText());
+            }
 
         } catch (Exception e) {
         }
