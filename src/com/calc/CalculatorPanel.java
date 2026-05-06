@@ -5,6 +5,8 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 class CalculatorPanel extends JPanel implements ActionListener {
 
@@ -471,19 +473,19 @@ class CalculatorPanel extends JPanel implements ActionListener {
     }// end action method
 
     public void hexDisable(Boolean flag) {
+        Arrays.stream(this.hexDisableButton).
+                forEach(button -> button.setEnabled(flag));
 
-        for (int i = 0; i < 7; i++)
-            this.hexDisableButton[i].setEnabled(flag);
     }
 
     public void decDisable(Boolean flag) {
-        for (int i = 0; i < 6; i++)
-            this.decimalDisableButton[i].setEnabled(flag);
+        Arrays.stream(this.decimalDisableButton).
+                forEach(button -> button.setEnabled(flag));
     }
 
     public void octDisable(Boolean flag) {
-        for (int i = 0; i < 2; i++)
-            this.octDisableButton[i].setEnabled(flag);
+        Arrays.stream(this.octDisableButton).
+                forEach(button -> button.setEnabled(flag));
     }
 
     public void binDisable(Boolean flag) {
