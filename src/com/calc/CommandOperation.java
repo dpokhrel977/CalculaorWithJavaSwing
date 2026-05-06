@@ -38,71 +38,47 @@ class CommandOperation {
 
     public void calculate(double number1, String command) {
 
-        if (command == "Not" || command == "Int")
+        if ("Not".equals(command) || "Int".equals(command)) {
             this.lastCommand = command;
-        if (this.lastCommand == "N")
+        }
+        if ("N".equals(this.lastCommand)) {
             this.result = number1;
-        if (this.lastCommand != "N") {
-            if (!insertFlag)
+        } else {
+            if (!insertFlag) {
                 number1 = oldNumber;
-            if (this.lastCommand != command && command != "=")
-                this.lastCommand = command;
+            }
+            if (lastCommand != command && !"=".equals(command)) {
+                lastCommand = command;
+            }
 
-            if (this.lastCommand == "+" && insertFlag == true)
-                add(number1);
-            if (this.lastCommand == "+" && command == "="
-                    && insertFlag == false)
-                add(number1);
+            if (insertFlag || "=".equals(command)) {
+                switch (lastCommand) {
+                    case "+" -> add(number1);
+                    case "-" -> subtract(number1);
+                    case "*" -> multiply(number1);
+                    case "/" -> divide(number1);
+                    case "x^y" -> raise(number1);
+                }
+            }
 
-            if (this.lastCommand == "-" && insertFlag == true)
-                subtract(number1);
-            if (this.lastCommand == "-" && command == "="
-                    && insertFlag == false)
-                subtract(number1);
-
-            if (this.lastCommand == "*" && insertFlag == true)
-                multiply(number1);
-            if (this.lastCommand == "*" && command == "="
-                    && insertFlag == false)
-                multiply(number1);
-
-            if (this.lastCommand == "/" && insertFlag == true)
-                divide(number1);
-            if (this.lastCommand == "/" && command == "="
-                    && insertFlag == false)
-                divide(number1);
-
-            if (lastCommand == "x^y" && insertFlag == true)
-                raise(number1);
-            if (this.lastCommand == "x^y" && command == "="
-                    && insertFlag == false)
-                raise(number1);
-
-            if (this.lastCommand == "Md" && command == "=")
-                modulus(number1);
-            if (this.lastCommand == "And" && command == "=")
-                bitwiseOperation(number1, lastCommand);
-            if (this.lastCommand == "Or" && command == "=")
-                bitwiseOperation(number1, lastCommand);
-            if (this.lastCommand == "Xor" && command == "=")
-                bitwiseOperation(number1, lastCommand);
-            if (this.lastCommand == "Lsh" && command == "=")
-                bitwiseOperation(number1, lastCommand);
-            if (this.lastCommand == "Not" || this.lastCommand == "Int")
-                bitwiseOperation(number1, lastCommand);
+            if ("=".equals(command)) {
+                switch (lastCommand) {
+                    case "Md" -> modulus(number1);
+                    case "And", "Or", "Xor", "Lsh", "Not", "Int" -> bitwiseOperation(number1, lastCommand);
+                }
+            }
             oldNumber = number1;
         }
-        if (insertFlag == false && lastCommand != "=")
+        if (!insertFlag && lastCommand != "=") {
             lastCommand = lastCommand;
-        else if (command != "=")
+        } else if (command != "=") {
             this.lastCommand = command;
+        }
 
     }
 
     public void add(double number1) {
-
         this.result += number1;
-
         CalculatorPanel.displayResult(result);
 
     }
@@ -151,9 +127,7 @@ class CommandOperation {
         CalculatorPanel.displayResult(result);
     }
 
-    public static void clearAll()
-
-    {
+    public static void clearAll() {
         number2 = 0;
         result = 0;
         display.setText("0");
